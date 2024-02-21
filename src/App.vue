@@ -1,47 +1,60 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+<!-- <header>
+  THIS IS THE HEADER
+</header> -->
+
+<body>
+  <div class="main-container">
+    <div class="main-container__logo">
+      <img src="./assets/images/logo-with-mascot.svg" alt="logo">
     </div>
-  </header>
+    <div class="main-container__form">
+      <BudgetForm />
+    </div>
+  </div>
+</body>
 
-  <main>
-    <TheWelcome />
-  </main>
+<!-- <footer>
+  THIS IS THE FOOTER
+</footer> -->
+
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script>
+import BudgetForm from "./components/BudgetForm.vue"
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+export default {
+  name: "App",
+  components: {
+    BudgetForm
   }
 }
+</script>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  height: 100vh;
+  display: flex;
+}
+
+.main-container__logo {
+  img {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 </style>
