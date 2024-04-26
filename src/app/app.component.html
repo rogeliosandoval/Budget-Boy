@@ -1,11 +1,47 @@
-<div class="header">
-  <img src="../assets/logo.svg" alt="logo">
-  <div class="nav-links">
-    <span>About</span>
-    <span>Login</span>
+<section class="main-container"
+  [class.main-container-dark]="!lightMode">
+  <div class="header">
+    <img routerLink="/home" src="assets/logo.svg" alt="logo">
+    <div class="toggle-theme">
+      @if (lightMode) {
+        <button (click)="lightMode = false"
+          mat-flat-button
+          color="accent"
+          style="color: whitesmoke">
+          Dark Mode
+          <mat-icon fontIcon="brightness_2"></mat-icon>
+        </button>
+      } @else {
+        <button (click)="lightMode = true"
+          mat-flat-button
+          color="primary"
+          style="color: whitesmoke">
+          Light Mode
+          <mat-icon fontIcon="brightness_7"></mat-icon>
+        </button>
+      }
+    </div>
+    <div class="nav-links"
+      [class.nav-links-dark]="!lightMode">
+      <span routerLink="/home">Home</span>
+      <span>About</span>
+      @if (authService.currentUserSignal() === null) {
+        <span routerLink="/register" style="background-color:#01BF62 !important; color: white;">Sign Up</span>
+        <span routerLink="/login">Log In</span>
+      } @else {
+        <span (click)="logout()">Sign out</span>
+      }
+    </div>
   </div>
-</div>
-<div class="background">
-  <div class="background-brick-green"></div>
-  <div class="background-brick-gray"></div>
-</div>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer">
+    <div class="main-footer-text">©2024: BudgetBoy</div>
+    <div class="sub-footer-text">Website By: <span>Chubby Designs</span></div>
+  </div>
+  <div class="background">
+    <div class="background-brick-green"></div>
+    <div class="background-brick-gray"></div>
+  </div>
+</section>
