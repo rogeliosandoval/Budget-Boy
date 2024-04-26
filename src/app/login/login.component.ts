@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { AuthService } from "../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -9,6 +11,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 export class LoginComponent {
   public loginForm: FormGroup;
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   constructor(
     private formBuilder: FormBuilder
@@ -16,10 +20,14 @@ export class LoginComponent {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
-    })
+    });
   }
 
-  public signIn(): void {
-    console.log('this works')
+  public login(): void {
+    const rawForm = this.loginForm.getRawValue();
+    this.authService.login(rawForm.email, rawForm.password)
+      .subscribe(() => {
+        this.router.navigateByUrl('/dashboard');
+      });
   }
 }

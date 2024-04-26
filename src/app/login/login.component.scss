@@ -96,3 +96,18 @@ form {
   opacity: 0.6;
   pointer-events: none;
 }
+
+.register {
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  span {
+    color: $theme-green;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
