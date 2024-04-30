@@ -1,4 +1,28 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$green-palette, 500);
+$my-accent: mat.define-palette(mat.$blue-grey-palette, A400, A100, A400);
+$my-typography: mat.define-typography-config();
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+  typography: $my-typography,
+));
+
+@include mat.all-component-themes($my-theme);
+
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+  overflow-x: hidden;
 }

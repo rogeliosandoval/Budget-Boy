@@ -1,2 +1,35 @@
 $theme-green: #01BF62;
 $theme-gray: #4E4C4C;
+
+.fade {
+  opacity: 0.3;
+}
+
+.form-fade {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+//Animations
+@keyframes slideInRight {
+  0% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
