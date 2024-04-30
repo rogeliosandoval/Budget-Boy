@@ -1,0 +1,39 @@
+<div class="register">
+  <div class="register-title">
+    Register
+  </div>
+  <form [formGroup]="registerForm"
+    [class.form-fade]="loading">
+    <div class="register-input">
+      <label>Username</label>
+      <input type="text" placeholder="username" formControlName="username">
+      <span>Invalid Email</span>
+    </div>
+    <div class="register-input">
+      <label>Email</label>
+      <input type="email" placeholder="email" formControlName="email">
+      <span>Invalid Email</span>
+    </div>
+    <div class="register-input">
+      <label>Password</label>
+      <input type="password" placeholder="password" formControlName="password">
+      <span>Invalid Password</span>
+    </div>
+    <div class="register-input">
+      <label>Confirm Password</label>
+      <input type="password" placeholder="confirm password" formControlName="confirmPassword">
+      <span>Invalid Password</span>
+    </div>
+
+    <button [class.button-disabled]="registerForm.invalid" (click)="register()">Register</button>
+  </form>
+  @if (loading) {
+    <div class="loader">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+  <div class="login">
+    Already have an account? <span routerLink="/login">Log in</span>!
+  </div>
+</div>
+<img src="../../assets/girl-computer.webp" alt="girl-on-computer">

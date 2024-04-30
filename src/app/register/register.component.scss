@@ -1,0 +1,154 @@
+@import 'src/variables.scss';
+@import 'include-media';
+
+.register {
+  position: relative;
+  margin-top: 55px;
+  animation: fadeIn 0.3s linear;
+}
+
+.register-title {
+  position: absolute;
+  top: -42px;
+  left: 20px;
+  letter-spacing: -3px;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: $theme-green;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+form {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px;
+  max-width: 400px;
+  height: 100%;
+  background-color: $theme-green;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 10px 10px $theme-gray;
+  z-index: 2;
+
+  & label:first-child {
+    margin: 0;
+  }
+
+  button {
+    padding: 5px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.1s linear;
+    border: none;
+    background-color: whitesmoke;
+    width: 100px;
+    text-transform: uppercase;
+    color: $theme-gray;
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(110%);
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  label {
+    color: white;
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  input {
+    display: block;
+    padding: 10px 6px;
+    width: 340px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 3px;
+    color: $theme-gray;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+  
+    &:focus {
+      outline: transparent;
+    }
+  }
+}
+
+.register-input {
+  span {
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+    visibility: hidden;
+  }
+}
+
+.button-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.login {
+  position: absolute;
+  bottom: -60px;
+  left: 80px;
+  
+  span {
+    color: $theme-green;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0.3;
+}
+
+@include media('<=600px') {
+  .register-title {
+    position: absolute;
+    top: -34px;
+    left: 20px;
+    letter-spacing: -3px;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $theme-green;
+  }
+
+  form {
+    input {
+      width: 300px;
+      font-size: 15px;
+    }
+  }
+
+  .login {
+    left: 55px;
+  }
+}
