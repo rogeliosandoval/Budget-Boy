@@ -1,0 +1,41 @@
+@if (authService.currentUserSignal() || authService.currentUserSignal() === null) {
+  <div class="home-container">
+    <div class="home">
+      @if (authService.currentUserSignal()) {
+        <div class="cta">
+          <div class="title">
+            <h1>{{authService.currentUserSignal()?.username}}<br/>welcome!</h1>
+            <div class="sub-title">
+              Go to your dash to start calculating!
+              <!-- <br/>
+              <br/>
+              With the <span>custom</span> built-in calculator, the process is seemless! -->
+            </div>
+          </div>
+          <button routerLink="/dashboard">Dashboard</button>
+        </div>
+        <img src="assets/girl-counting.svg" alt="girl-counting">
+      } @else {
+        <div class="cta">
+          <div class="title">
+            <h1>Keep track <br/>of your finances</h1>
+            <div class="sub-title">
+              Budget Boy is your online tool for keeping track of all of your expenses so that way you never miss a payment or go under budget.
+              <br/>
+              <br/>
+              With the <span>custom</span> built-in calculator, the process is seemless!
+            </div>
+          </div>
+          <button routerLink="/register">Get Started</button>
+        </div>
+        <img src="assets/girl-counting.svg" alt="girl-counting">
+      }
+    </div>
+    <div class="footer">
+      <div class="main-footer-text">©2024: BudgetBoy</div>
+      <div class="sub-footer-text">Website By: <span>Chubby Designs</span></div>
+    </div>
+  </div>
+} @else {
+  <mat-spinner style="margin-top: 50px;"></mat-spinner>
+}
