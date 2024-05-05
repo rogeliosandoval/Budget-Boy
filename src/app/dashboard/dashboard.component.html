@@ -1,1 +1,20 @@
-<h1>YOUR DASHBOARD</h1>
+<div class="dashboard">
+  <div class="add" mat-flat-button color="primary"
+    (click)="addExpense()">
+    <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
+  </div>
+  <div class="expense-card"
+    [class.expense-card-dark]="!sharedService.lightMode">
+    <div class="cost">
+      $1500
+    </div>
+    <div class="info">
+      <div class="title">
+        Rent
+      </div>
+      <div class="note">
+        The apartment in which I live in.
+      </div>
+    </div>
+  </div>
+</div>

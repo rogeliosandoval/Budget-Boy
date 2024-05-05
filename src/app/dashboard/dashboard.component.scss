@@ -1,3 +1,61 @@
-h1 {
-  color: orchid
+@import 'src/variables.scss';
+@import 'include-media';
+
+.expense-card {
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+  height: auto;
+  width: 300px;
+  background-color: whitesmoke;
+  box-shadow: -5px 5px gray;;
+  border-radius: 20px;
+  padding: 15px 10px;
+  gap: 10px;
+}
+
+.expense-card-dark {
+  background-color: $theme-gray;
+  box-shadow: -10px 10px rgb(34, 34, 34);
+}
+
+.cost {
+  font-size: 60px;
+  color: $theme-green;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.title {
+  text-transform: capitalize;
+  font-size: x-large;
+  margin-bottom: 5px;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: $theme-green;
+
+  mat-icon {
+    color: white;
+  }
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(110%);
+  }
+
+  &:active {
+    filter: brightness(100%);
+  }
 }
