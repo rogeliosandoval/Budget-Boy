@@ -25,6 +25,10 @@
       <span>Invalid Password</span>
     </div>
 
+    <span class="form-error">
+      {{errorMessage}}
+    </span>
+
     <button [class.button-disabled]="registerForm.invalid" (click)="register()">Register</button>
   </form>
   @if (loading) {
