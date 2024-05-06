@@ -1,6 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
+import { SharedService } from "../services/shared.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent {
   public errorMessage: string = '';
   public loading: boolean = false;
   private authService = inject(AuthService);
+  private sharedService = inject(SharedService);
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
 
@@ -26,15 +28,17 @@ export class LoginComponent {
 
   public login(): void {
     this.loading = true;
+    this.sharedService.navFade = true;
     const rawForm = this.loginForm.getRawValue();
 
     this.authService.login(rawForm.email, rawForm.password)
     .subscribe({
       next: response => {
-        this.router.navigateByUrl('/home');
+        window.location.reload();
       },
       error: err => {
         this.loading = false;
+        this.sharedService.navFade = false;
         if (err.code === 'auth/invalid-credential') {
           this.errorMessage = 'Wrong email or password. Please try again.'
         } else {
