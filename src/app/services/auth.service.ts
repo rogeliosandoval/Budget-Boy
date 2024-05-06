@@ -8,9 +8,9 @@ import { User } from "../user.interface";
 })
 
 export class AuthService {
-  firebaseAuth = inject(Auth);
-  user$ = user(this.firebaseAuth);
-  currentUserSignal = signal<User | undefined | null>(undefined)
+  private firebaseAuth = inject(Auth);
+  public user$ = user(this.firebaseAuth);
+  public currentUserSignal = signal<User | undefined | null>(undefined);
 
   register(
     username: string,

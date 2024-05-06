@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from './auth.service';
-import { User } from '../user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +7,7 @@ import { User } from '../user.interface';
 
 export class SharedService {
   private authService = inject(AuthService);
+  public navFade: boolean = false;
   public lightMode: boolean = true;
   public user: any;
 

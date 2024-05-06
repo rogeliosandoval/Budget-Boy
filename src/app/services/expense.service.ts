@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireList } from '@angular/fire/compat/database';
+import { SharedService } from './shared.service'
 import { Expense } from '../user.interface';
 
 @Injectable({
@@ -8,12 +9,14 @@ import { Expense } from '../user.interface';
 })
 
 export class ExpenseService {
-  private databasePath = '/expenses';
+  private databasePath = '/expenses/';
   private database = inject(AngularFireDatabase);
+  private sharedService = inject(SharedService);
   public expenseRef: AngularFireList<any>
+  private userName = this.sharedService.user.displayName;
 
-  constructor() {
-    this.expenseRef = this.database.list(this.databasePath);
+  constructor(){
+    this.expenseRef = this.database.list(this.databasePath + this.userName);
   }
 
   getAllExpenses() {
@@ -23,6 +26,7 @@ export class ExpenseService {
   addExpense(expense: Expense): void {
     this.expenseRef.push(expense);
   }
+  
 
   getExpense(key: string) {
     return this.database.object(`${this.databasePath}/${key}`);
