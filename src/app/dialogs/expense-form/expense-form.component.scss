@@ -1,0 +1,140 @@
+@import 'src/variables.scss';
+@import 'include-media';
+
+form {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px;
+  max-width: 400px;
+  height: 100%;
+  background-color: $theme-red;
+  padding: 25px;
+  box-shadow: 10px 10px $theme-gray;
+  z-index: 2;
+  transition: 0.1s linear;
+
+  & label:first-child {
+    margin: 0;
+  }
+
+  button {
+    padding: 5px;
+    margin-top: 20px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.1s linear;
+    border: none;
+    background-color: whitesmoke;
+    width: 100px;
+    text-transform: uppercase;
+    color: $theme-gray;
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(110%);
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  label {
+    color: white;
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  input {
+    display: block;
+    padding: 10px 6px;
+    width: 340px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 3px;
+    color: $theme-gray;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+  
+    &:focus {
+      outline: transparent;
+    }
+  }
+}
+
+.income-background {
+  background-color: $theme-green;
+}
+
+.amount-input {
+  input {
+    font-size: 30px !important;
+    color: $theme-green !important;
+  }
+}
+
+.type-input {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  input {
+    width: 100px !important;
+  }
+
+  button {
+    color: white;
+    outline: none;
+    margin: 0;
+  }
+}
+
+.type-input--expense {
+  button {
+    background-color: $theme-green;
+  }
+}
+
+.type-input--income {
+  button {
+    background-color: $theme-red;
+  }
+}
+
+.title {
+  position: relative;
+  background-color: $theme-gray;
+  color: white;
+  font-size: 19px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+
+  mat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 4px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

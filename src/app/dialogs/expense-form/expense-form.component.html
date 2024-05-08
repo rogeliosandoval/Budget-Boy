@@ -1,0 +1,33 @@
+<div class="expense-form-container">
+  <div class="title">
+    {{ type === 'income' ? 'Add An Income' : 'Add An Expense' }}
+    <mat-icon fontIcon="close" (click)="matDialog.closeAll()"></mat-icon>
+  </div>
+  <form [formGroup]="expenseForm"
+    [class.income-background]="type === 'income'">
+    @if (type === 'expense') {
+      <div class="type-input type-input--expense">
+        <input formControlName="type">
+        <button (click)="updateType('income')">Income</button>
+      </div>
+    } @else {
+      <div class="type-input type-input--income">
+        <button (click)="updateType('expense')">Expense</button>
+        <input formControlName="type">
+      </div>
+    }
+    <div class="expense-input amount-input">
+      <label>amount</label>
+      <input type="text" placeholder="$" formControlName="amount">
+    </div>
+    <div class="expense-input">
+      <label>Title</label>
+      <input type="text" placeholder="title" formControlName="title">
+    </div>
+    <div class="expense-input">
+      <label>Note</label>
+      <input type="text" placeholder="note" formControlName="note">
+    </div>
+    <button (click)="onSubmit()" [class.button-disabled]="expenseForm.invalid">Add</button>
+  </form>
+</div>
