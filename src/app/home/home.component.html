@@ -1,7 +1,7 @@
 @if (authService.currentUserSignal() || authService.currentUserSignal() === null) {
   <div class="home-container">
     <div class="home">
-      @if (authService.currentUserSignal()) {
+      @if (sharedService.user) {
         <div class="cta">
           <div class="title">
             <h1>{{authService.currentUserSignal()?.username}}<br/>welcome!</h1>
