@@ -1,5 +1,6 @@
 $theme-green: #01BF62;
 $theme-gray: #4E4C4C;
+$theme-red: rgb(190, 0, 0);
 
 .fade {
   opacity: 0.3;
@@ -17,7 +18,7 @@ $theme-gray: #4E4C4C;
 
 .form-error {
   font-size: 14px;
-  color: rgb(190, 0, 0);
+  color: $theme-red;
   font-weight: bold;
   max-width: 300px;
 }
