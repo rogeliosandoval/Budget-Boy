@@ -1,6 +1,6 @@
 $theme-green: #01BF62;
 $theme-gray: #4E4C4C;
-$theme-red: rgb(190, 0, 0);
+$theme-red: rgb(224, 60, 60);
 
 .fade {
   opacity: 0.3;
@@ -23,7 +23,20 @@ $theme-red: rgb(190, 0, 0);
   max-width: 300px;
 }
 
+.no-scroll {
+  overflow: hidden !important;
+}
+
 //Animations
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @keyframes slideInRight {
   0% {
     transform: translateX(300px);
