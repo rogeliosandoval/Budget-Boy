@@ -18,7 +18,7 @@
     }
     <div class="expense-input amount-input">
       <label>amount</label>
-      <input type="text" placeholder="$" formControlName="amount">
+      <input type="text" placeholder="$" formControlName="amount" numbersOnly>
     </div>
     <div class="expense-input">
       <label>Title</label>
@@ -26,8 +26,12 @@
     </div>
     <div class="expense-input">
       <label>Note</label>
-      <input type="text" placeholder="note" formControlName="note">
+      <input type="text" placeholder="note" formControlName="note" maxLength="50">
     </div>
-    <button (click)="onSubmit()" [class.button-disabled]="expenseForm.invalid">Add</button>
+    @if (!data) {
+      <button (click)="onSubmit()" [class.button-disabled]="expenseForm.invalid">Add</button>
+    } @else {
+      <button (click)="onSubmit()" [class.button-disabled]="expenseForm.invalid">Update</button>
+    }
   </form>
 </div>
