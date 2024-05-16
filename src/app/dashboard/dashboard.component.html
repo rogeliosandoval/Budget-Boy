@@ -1,20 +1,122 @@
 <div class="dashboard">
-  <div class="add" mat-flat-button color="primary"
-    (click)="addExpense()">
-    <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
-  </div>
-  <div class="expense-card"
-    [class.expense-card-dark]="!sharedService.lightMode">
-    <div class="cost">
-      $1500
+  <div class="expense-container"
+    [class.expense-container-no-data]="expenses.length <= 0">
+
+    <div class="expense-cards">
+      @if (!loading) {
+        @for (expense of expenses; track expense) {
+          <div class="expense-card"
+            [class.expense-card-dark]="!sharedService.lightMode">
+            <div class="amount"
+              [class.amount-expense]="expense.type === 'expense'"
+              [class.amount-income]="expense.type === 'income'">
+              ${{ expense.amount }}
+            </div>
+            <div class="info">
+              <div class="title">
+                {{ expense.title}}
+              </div>
+              <div class="note">
+                {{ expense.note }}
+              </div>
+            </div>
+            <mat-icon mat-button
+              fontIcon="more_vert"
+              [matMenuTriggerFor]="menu">
+            </mat-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editExpense(expense)">
+                <mat-icon color="primary" fontIcon="mode_edit"></mat-icon>
+                Edit
+              </button>
+              <button mat-menu-item (click)="deleteExpense(expense.key, expense.type, expense.amount)">
+                <mat-icon color="warn" fontIcon="delete"></mat-icon>
+                Delete
+              </button>
+            </mat-menu>
+          </div>
+        }
+      }
     </div>
-    <div class="info">
-      <div class="title">
-        Rent
+    <div class="expense-clipboard"
+      [class.expense-clipboard-dark]="!sharedService.lightMode">
+      <div class="clipboard-title"
+        [class.clipboard-title-dark]="!sharedService.lightMode">
+        Budget Report/Monthly
+        <div class="clipboard-add" mat-flat-button color="primary"
+          (click)="addExpense()">
+          <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
+        </div>
       </div>
-      <div class="note">
-        The apartment in which I live in.
-      </div>
+      @if (loading) {
+        <div class="clipboard-loader">
+          <mat-spinner></mat-spinner>
+        </div>
+      } @else {
+        @if (expenses.length <= 0) {
+          <div class="add-container">
+            Your report is currently empty.
+            <br/>
+            Start adding!
+            <div class="add" mat-flat-button color="primary"
+              (click)="addExpense()">
+              <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
+            </div>
+          </div>
+        }
+        <div class="clipboard-list">
+          @for (expense of expenses; track expense) {
+            <div class="clipboard-list-item">
+              <div class="list-item-title">
+                {{ expense.title }}
+              </div>
+              <div class="list-item-amount"
+                [class.amount-expense]="expense.type === 'expense'"
+                [class.amount-income]="expense.type === 'income'">
+                ${{ expense.amount }}
+              </div>
+            </div>
+          }
+        </div>
+        <div class="clipboard-summary">
+          <div class="total-item">
+            <span>obligation</span>
+            @if (totalLoading) {
+              <span class="total-item-loader">
+                <mat-spinner></mat-spinner>
+              </span>
+            } @else {
+              <span>${{ totalExpenses | twoDecimal }}</span>
+            }
+          </div>
+          <div class="total-item">
+            <span>income</span>
+            @if (totalLoading) {
+              <span class="total-item-loader">
+                <mat-spinner></mat-spinner>
+              </span>
+            } @else {
+              <span>${{ totalIncome | twoDecimal }}</span>
+            }
+          </div>
+          <div class="total-item">
+            <span>profit</span>
+            @if (totalLoading) {
+              <span class="total-item-loader">
+                <mat-spinner></mat-spinner>
+              </span>
+            } @else {
+              @if (this.totalProfit < 0) {
+                <span style="color:rgb(236, 90, 90)">${{ totalProfit | twoDecimal }}</span>
+              } @else if (this.totalProfit > 0) {
+                <span style="color: #01BF62">${{ totalProfit }}</span>
+              } @else {
+                <span>${{ totalProfit | twoDecimal }}</span>
+              }
+            }
+          </div>
+        </div>
+      }
     </div>
   </div>
 </div>

@@ -1,18 +1,59 @@
 @import 'src/variables.scss';
 @import 'include-media';
 
-.expense-card {
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.expense-container {
+  position: relative;
   display: flex;
   justify-content: center;
-  // align-items: center;
+  align-items: flex-start;
+  width: 100vw;
+}
+
+.expense-container-no-data {
+  justify-content: center;
+  align-items: center;
+}
+
+.expense-cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  width: 60%;
+}
+
+.expense-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
   flex-direction: column;
-  height: auto;
-  width: 300px;
+  max-height: 100px;
+  width: 250px;
   background-color: whitesmoke;
-  box-shadow: -5px 5px gray;;
+  box-shadow: -5px 5px gray;
   border-radius: 20px;
   padding: 15px 10px;
+  margin: 0 10px 10px 10px;
   gap: 10px;
+  animation: fadeIn 0.2s linear, slideInLeft 0.2s linear;
+
+  mat-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 10px;
+    padding-right: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .expense-card-dark {
@@ -20,21 +61,125 @@
   box-shadow: -10px 10px rgb(34, 34, 34);
 }
 
-.cost {
-  font-size: 60px;
-  color: $theme-green;
+.amount {
+  font-size: 40px;
   font-weight: bold;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.info {
-  flex-grow: 1;
+.amount-expense {
+  color: $theme-red;
+}
+
+.amount-income {
+  color: $theme-green;
 }
 
 .title {
   text-transform: capitalize;
-  font-size: x-large;
+  font-size: large;
   margin-bottom: 5px;
+}
+
+.info {
+  flex-grow: 1;
+  font-size: small;
+}
+
+
+.expense-clipboard {
+  position: relative;
+  width: 500px;
+  height: 650px;
+  background-color: whitesmoke;
+  box-shadow: 10px 10px 10px gray;
+  margin-right: 20px;
+  animation: fadeIn 0.5s linear;
+}
+
+.clipboard-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.expense-clipboard-dark {
+  background-color: $theme-gray;
+  box-shadow: 10px 10px rgb(34, 34, 34);
+}
+
+.clipboard-title {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  background-color: rgb(216, 216, 216);
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+.clipboard-title-dark {
+  background-color: darkslategray;
+}
+
+.clipboard-list {
+  padding: 20px;
+}
+
+.clipboard-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid black;
+  padding: 3px 0;
+}
+
+.list-item-title {
+  text-transform: capitalize;
+}
+
+.clipboard-summary {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid black;
+}
+
+.total-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  & span:first-child {
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+}
+
+.total-item-loader {
+  height: 20px;
+  width: 20px;
+  transform: scale(0.2);
+}
+
+.add-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
 }
 
 .add {
@@ -44,6 +189,29 @@
   height: 50px;
   width: 50px;
   border-radius: 100%;
+  background-color: $theme-green;
+
+  mat-icon {
+    color: white;
+  }
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(110%);
+  }
+
+  &:active {
+    filter: brightness(100%);
+  }
+}
+
+.clipboard-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  // border-radius: 100%;
   background-color: $theme-green;
 
   mat-icon {
