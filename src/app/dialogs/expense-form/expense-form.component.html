@@ -1,6 +1,10 @@
 <div class="expense-form-container">
   <div class="title">
-    {{ type === 'income' ? 'Add An Income' : 'Add An Expense' }}
+    @if (!data) {
+      {{ type === 'income' ? 'Add An Income' : 'Add An Expense' }}
+    } @else {
+      {{ initialType === 'income' ? 'Edit Income' : 'Edit Expense' }}
+    }
     <mat-icon fontIcon="close" (click)="matDialog.closeAll()"></mat-icon>
   </div>
   <form [formGroup]="expenseForm"
@@ -18,7 +22,7 @@
     }
     <div class="expense-input amount-input">
       <label>amount</label>
-      <input type="text" placeholder="$" formControlName="amount" numbersOnly>
+      <input type="text" placeholder="$" formControlName="amount" numbersOnly maxLength="7">
     </div>
     <div class="expense-input">
       <label>Title</label>

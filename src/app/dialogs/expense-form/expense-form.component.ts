@@ -17,6 +17,7 @@ export class ExpenseFormComponent implements OnInit {
   public expenseForm: FormGroup;
   public type: string = 'expense';
   public initialAmount: any;
+  public initialType: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -41,6 +42,7 @@ export class ExpenseFormComponent implements OnInit {
 
     if (this.data) {
       this.initialAmount = this.data.amount;
+      this.initialType = this.data.type;
     }
   }
 
@@ -83,7 +85,8 @@ export class ExpenseFormComponent implements OnInit {
     const controlInfo = {
       amount: amountControl,
       type: typeControl,
-      oldAmount: null
+      oldAmount: null,
+      oldType: null
     }
     this.handleControlNumberValue();
     if (!this.data) {
@@ -91,6 +94,7 @@ export class ExpenseFormComponent implements OnInit {
       this.dialogRef.close(controlInfo)
     } else {
       controlInfo.oldAmount = this.initialAmount;
+      controlInfo.oldType = this.initialType;
       this.expenseService.updateExpense(this.data.key, this.expenseForm.getRawValue());
       this.dialogRef.close(controlInfo)
     }
