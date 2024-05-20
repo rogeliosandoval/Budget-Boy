@@ -37,11 +37,12 @@ export class DashboardComponent implements OnInit {
         next: response => {
           if (response) {
             this.sharedService.modalOpened = false;
+            let amount = response.amount.replace(/,/g, '');
             if (response.type === 'expense') {
-              this.totalExpenses += parseFloat(response.amount);
+              this.totalExpenses += parseFloat(amount);
               this.totalProfit = this.totalIncome - this.totalExpenses;
             } else {
-              this.totalIncome += parseFloat(response.amount);
+              this.totalIncome += parseFloat(amount);
               this.totalProfit = this.totalIncome - this.totalExpenses;
             }
           }
@@ -60,25 +61,65 @@ export class DashboardComponent implements OnInit {
           if (response) {
             this.sharedService.modalOpened = false;
             let difference = 0;
-            if (response.type === 'expense') {
-              if (response.oldAmount < response.amount) {
-                difference = response.amount - response.oldAmount;
-                this.totalExpenses += parseFloat(difference.toString());
-                this.totalProfit = this.totalIncome - this.totalExpenses;
-              } else if (response.oldAmount > response.amount) {
-                difference = response.oldAmount - response.amount;
-                this.totalExpenses -= parseFloat(difference.toString());
-                this.totalProfit = this.totalIncome - this.totalExpenses;
+            if (response.oldType === 'expense') {
+              if (response.oldType === response.type) {
+                if (response.oldAmount < response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  difference = amount - oldAmount;
+                  this.totalExpenses += parseFloat(difference.toString());
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                } else if (response.oldAmount > response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  difference = oldAmount - amount;
+                  this.totalExpenses -= parseFloat(difference.toString());
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                }
+              } else {
+                if (response.oldAmount <= response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  this.totalExpenses -= parseFloat(oldAmount);
+                  this.totalIncome += parseFloat(amount);
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                } else if (response.oldAmount >= response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  this.totalExpenses -= parseFloat(oldAmount);
+                  this.totalIncome += parseFloat(amount);
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                }
               }
             } else {
-              if (response.oldAmount < response.amount) {
-                difference = response.amount - response.oldAmount;
-                this.totalIncome += parseFloat(difference.toString());
-                this.totalProfit = this.totalIncome - this.totalExpenses;
-              } else if (response.oldAmount > response.amount) {
-                difference = response.oldAmount - response.amount;
-                this.totalIncome -= parseFloat(difference.toString());
-                this.totalProfit = this.totalIncome - this.totalExpenses;
+              if (response.oldType === response.type) {
+                if (response.oldAmount < response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  difference = amount - oldAmount;
+                  this.totalIncome += parseFloat(difference.toString());
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                } else if (response.oldAmount > response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  difference = oldAmount - amount;
+                  this.totalIncome -= parseFloat(difference.toString());
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                }
+              } else {
+                if (response.oldAmount <= response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  this.totalIncome -= parseFloat(oldAmount);
+                  this.totalExpenses += parseFloat(amount);
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                } else if (response.oldAmount >= response.amount) {
+                  let oldAmount = response.oldAmount.replace(/,/g, '');
+                  let amount = response.amount.replace(/,/g, '');
+                  this.totalIncome -= parseFloat(oldAmount);
+                  this.totalExpenses += parseFloat(amount);
+                  this.totalProfit = this.totalIncome - this.totalExpenses;
+                }
               }
             }
           }
@@ -99,11 +140,12 @@ export class DashboardComponent implements OnInit {
         next: response => {
           this.sharedService.modalOpened = false;
           if (response) {
+            let parseAmount = amount.replace(/,/g, '');
             if (type === 'expense') {
-              this.totalExpenses -= amount
+              this.totalExpenses -= parseAmount
               this.totalProfit = this.totalIncome - this.totalExpenses;
             } else {
-              this.totalIncome -= amount
+              this.totalIncome -= parseAmount
               this.totalProfit = this.totalIncome - this.totalExpenses;
             }
           }
@@ -135,10 +177,12 @@ export class DashboardComponent implements OnInit {
 
   public getTotals(): void {
     this.expenses.forEach((item) => {
+      let amount = item.amount.replace(/,/g, '');
+
       if (item.type === 'expense') {
-        this.totalExpenses += parseFloat(item.amount);
+        this.totalExpenses += parseFloat(amount);
       } else {
-        this.totalIncome += parseFloat(item.amount);
+        this.totalIncome += parseFloat(amount);
       }
     })
     this.totalProfit = this.totalIncome - this.totalExpenses;

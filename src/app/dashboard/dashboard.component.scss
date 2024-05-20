@@ -58,7 +58,7 @@
 
 .expense-card-dark {
   background-color: $theme-gray;
-  box-shadow: -10px 10px rgb(34, 34, 34);
+  box-shadow: -5px 5px rgb(34, 34, 34);
 }
 
 .amount {
@@ -226,4 +226,66 @@
   &:active {
     filter: brightness(100%);
   }
+}
+
+@include media('<desktop') {
+  .expense-cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  width: 60%;
+  }
+
+  .expense-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-height: 100px;
+    width: 250px;
+    background-color: whitesmoke;
+    box-shadow: -5px 5px gray;
+    border-radius: 20px;
+    padding: 15px 10px;
+    margin: 0 10px 10px 10px;
+    gap: 10px;
+    animation: fadeIn 0.2s linear, slideInLeft 0.2s linear;
+
+    mat-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding-top: 10px;
+      padding-right: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .expense-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .expense-clipboard {
+    width: 400px;
+  }
+
+  .clipboard-title {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    background-color: rgb(216, 216, 216);
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px;
+  }
+}
+
+@include media('<=600px') {
+
 }

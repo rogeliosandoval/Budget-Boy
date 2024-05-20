@@ -1,7 +1,6 @@
 <div class="dashboard">
   <div class="expense-container"
     [class.expense-container-no-data]="expenses.length <= 0">
-
     <div class="expense-cards">
       @if (!loading) {
         @for (expense of expenses; track expense) {
@@ -109,7 +108,7 @@
               @if (this.totalProfit < 0) {
                 <span style="color:rgb(236, 90, 90)">${{ totalProfit | twoDecimal }}</span>
               } @else if (this.totalProfit > 0) {
-                <span style="color: #01BF62">${{ totalProfit }}</span>
+                <span style="color: #01BF62">${{ totalProfit | twoDecimal }}</span>
               } @else {
                 <span>${{ totalProfit | twoDecimal }}</span>
               }
