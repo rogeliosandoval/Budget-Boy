@@ -35,8 +35,8 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       this.matDialog.open(ExpenseFormComponent).afterClosed().subscribe({
         next: response => {
+          this.sharedService.modalOpened = false;
           if (response) {
-            this.sharedService.modalOpened = false;
             let amount = response.amount.replace(/,/g, '');
             if (response.type === 'expense') {
               this.totalExpenses += parseFloat(amount);
@@ -58,8 +58,8 @@ export class DashboardComponent implements OnInit {
         data: expense
       }).afterClosed().subscribe({
         next: response => {
+          this.sharedService.modalOpened = false;
           if (response) {
-            this.sharedService.modalOpened = false;
             let difference = 0;
             if (response.oldType === 'expense') {
               if (response.oldType === response.type) {

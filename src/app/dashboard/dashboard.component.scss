@@ -126,6 +126,8 @@
 
 .clipboard-list {
   padding: 20px;
+  height: 73.5%;
+  overflow: scroll;
 }
 
 .clipboard-list-item {
@@ -147,7 +149,7 @@
   padding: 20px 0;
   display: flex;
   justify-content: space-around;
-  border-top: 1px solid black;
+  border-top: 2px solid black;
 }
 
 .total-item {
@@ -164,8 +166,6 @@
 
 .total-item-loader {
   height: 20px;
-  width: 20px;
-  transform: scale(0.2);
 }
 
 .add-container {

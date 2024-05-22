@@ -82,7 +82,7 @@
             <span>obligation</span>
             @if (totalLoading) {
               <span class="total-item-loader">
-                <mat-spinner></mat-spinner>
+                <mat-spinner [diameter]="18"></mat-spinner>
               </span>
             } @else {
               <span>${{ totalExpenses | twoDecimal }}</span>
@@ -92,7 +92,7 @@
             <span>income</span>
             @if (totalLoading) {
               <span class="total-item-loader">
-                <mat-spinner></mat-spinner>
+                <mat-spinner [diameter]="18"></mat-spinner>
               </span>
             } @else {
               <span>${{ totalIncome | twoDecimal }}</span>
@@ -102,7 +102,7 @@
             <span>profit</span>
             @if (totalLoading) {
               <span class="total-item-loader">
-                <mat-spinner></mat-spinner>
+                <mat-spinner [diameter]="18"></mat-spinner>
               </span>
             } @else {
               @if (this.totalProfit < 0) {
