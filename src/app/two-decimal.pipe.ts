@@ -8,6 +8,6 @@ export class TwoDecimalPipe implements PipeTransform {
     if (isNaN(value)) {
       return '0.00'; // Handle NaN values gracefully
     }
-    return value.toFixed(2);
+    return value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
