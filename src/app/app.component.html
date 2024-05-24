@@ -1,178 +1,182 @@
-<section class="main-container"
-  [class.main-container-dark]="!sharedService.lightMode">
-  <div class="header"
-    [class.header-dark]="!sharedService.lightMode">
-    <img routerLink="/home" src="assets/logo.svg" alt="logo">
-    <!--Mobile Nav Toggle-->
-    <div class="mobile-nav-toggle"
-      [class.mobile-nav-toggle-dark]="!sharedService.lightMode">
-      @if (!showMobileNav) {
-        <mat-icon (click)="showMobileNav = true && showMobileNavDirty = true" fontIcon="menu" style="font-size: 30px; margin-right: 50px;"></mat-icon>
-      } @else {
-        <mat-icon (click)="showMobileNav = false" fontIcon="clear" style="font-size: 30px; margin-right: 50px;"></mat-icon>
-      }
+@if (authService.currentUserSignal() || authService.currentUserSignal() === null) {
+  <section class="main-container"
+    [class.main-container-dark]="!sharedService.lightMode"
+    [class.no-scroll]="sharedService.modalOpened">
+    <div class="header"
+      [class.header-dark]="!sharedService.lightMode">
+      <img routerLink="/home" src="assets/logo.svg" alt="logo">
+      <!--Mobile Nav Toggle-->
+      <div class="mobile-nav-toggle"
+        [class.mobile-nav-toggle-dark]="!sharedService.lightMode">
+        @if (!showMobileNav) {
+          <mat-icon (click)="showMobileNav = true && showMobileNavDirty = true" fontIcon="menu" style="font-size: 30px; margin-right: 50px;"></mat-icon>
+        } @else {
+          <mat-icon (click)="showMobileNav = false" fontIcon="clear" style="font-size: 30px; margin-right: 50px;"></mat-icon>
+        }
+      </div>
+      <!---->
+      <div class="nav-links"
+        [class.nav-links-dark]="!sharedService.lightMode"
+        [class.form-fade]="sharedService.navFade">
+        @if (sharedService.lightMode) {
+          <span (click)="sharedService.lightMode = false" style="background-color: black; color: white;">
+            <mat-icon fontIcon="brightness_2"></mat-icon>
+          </span>
+        } @else {
+          <span (click)="sharedService.lightMode = true" style="background-color: white !important; color: black;">
+            <mat-icon fontIcon="brightness_7"></mat-icon>
+          </span>
+        }
+        @if (!sharedService.user) {
+          <span routerLink="/home">Home</span>
+          <span routerLink="/about">About</span>
+          <span routerLink="/register" style="background-color:#01BF62 !important; color: white;">Sign Up</span>
+          <span routerLink="/login">Log In</span>
+        } @else {
+          <div mat-button 
+            [matMenuTriggerFor]="menu"
+            class="nav-links__user">
+            <div class="initial">{{initial}}</div>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/home">
+              <mat-icon color="primary" fontIcon="home"></mat-icon>
+              Home
+            </button>
+            <button mat-menu-item routerLink="/dashboard">
+              <mat-icon color="primary" fontIcon="view_comfy"></mat-icon>
+              Dashboard
+            </button>
+            <button mat-menu-item>
+              <mat-icon color="primary" fontIcon="check_box"></mat-icon>
+              Checklist
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon color="primary" fontIcon="logout"></mat-icon>
+              Sign Out
+            </button>
+          </mat-menu>
+        }
+      </div>
     </div>
-    <!---->
-    <div class="nav-links"
-      [class.nav-links-dark]="!sharedService.lightMode">
-      @if (sharedService.lightMode) {
-        <span (click)="sharedService.lightMode = false" style="background-color: black; color: white;">
-          <mat-icon fontIcon="brightness_2"></mat-icon>
-        </span>
-      } @else {
-        <span (click)="sharedService.lightMode = true" style="background-color: white !important; color: black;">
-          <mat-icon fontIcon="brightness_7"></mat-icon>
-        </span>
-      }
-      @if (authService.currentUserSignal() === null) {
-        <span routerLink="/home">Home</span>
-        <span routerLink="/about">About</span>
-        <span routerLink="/register" style="background-color:#01BF62 !important; color: white;">Sign Up</span>
-        <span routerLink="/login">Log In</span>
-      } @else {
-        <div mat-button 
-          [matMenuTriggerFor]="menu"
-          class="nav-links__user">
-          <div class="initial">{{initial}}</div>
+    <!--Mobile Navbar-->
+    @if (showMobileNav) {
+      <div style="position: relative;">
+        <div class="mobile-nav-links">
+          @if (!sharedService.user) {
+            @for (link of mobileNavLinksNonUser; track link) {
+              <div class="mobile-nav-link"
+                (click)="showMobileNav = false;"
+                routerLink="{{link.route}}">
+                <span>{{link.label}}</span>
+                <div class="mobile-nav-link__icon">
+                  <mat-icon fontIcon="{{link.icon}}"></mat-icon>
+                </div>
+              </div>
+            }
+          } @else {
+            @for (link of mobileNavLinksUser; track link) {
+              <div class="mobile-nav-link"
+                (click)="showMobileNav = false;"
+                routerLink="{{link.route}}">
+                <span>{{link.label}}</span>
+                <div class="mobile-nav-link__icon">
+                  <mat-icon fontIcon="{{link.icon}}"></mat-icon>
+                </div>
+              </div>
+            }
+            <div class="mobile-nav-link"
+              (click)="showMobileNav = false;">
+              <span>Sign Out</span>
+              <div class="mobile-nav-link__icon"
+                (click)="logout()">
+                <mat-icon fontIcon="logout"></mat-icon>
+              </div>
+            </div>
+          }
+          @if (sharedService.lightMode) {
+            <div class="mobile-nav-link">
+              <div class="mobile-nav-link__icon"
+                (click)="sharedService.lightMode = false"
+                style="background-color: black;">
+                <mat-icon fontIcon="brightness_2"></mat-icon>
+              </div>
+            </div>
+          } @else if (!sharedService.lightMode) {
+            <div class="mobile-nav-link">
+              <div class="mobile-nav-link__icon"
+                (click)="sharedService.lightMode = true"
+                style="background-color: white; color: black;">
+                <mat-icon fontIcon="brightness_7"></mat-icon>
+              </div>
+            </div>
+          }
         </div>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/home">
-            <mat-icon color="primary" fontIcon="home"></mat-icon>
-            Home
-          </button>
-          <button mat-menu-item routerLink="/dashboard">
-            <mat-icon color="primary" fontIcon="view_comfy"></mat-icon>
-            Dashboard
-          </button>
-          <button mat-menu-item>
-            <mat-icon color="primary" fontIcon="check_box"></mat-icon>
-            Checklist
-          </button>
-          <button mat-menu-item (click)="logout()">
-            <mat-icon color="primary" fontIcon="logout"></mat-icon>
-            Sign Out
-          </button>
-        </mat-menu>
-      }
-    </div>
-  </div>
-  <!--Mobile Navbar-->
-  @if (showMobileNav) {
-    <div style="position: relative;">
-      <div class="mobile-nav-links">
-        @if (authService.currentUserSignal() === null) {
-          @for (link of mobileNavLinksNonUser; track link) {
-            <div class="mobile-nav-link"
-              (click)="showMobileNav = false;"
-              routerLink="{{link.route}}">
-              <span>{{link.label}}</span>
-              <div class="mobile-nav-link__icon">
-                <mat-icon fontIcon="{{link.icon}}"></mat-icon>
-              </div>
-            </div>
-          }
-        } @else {
-          @for (link of mobileNavLinksUser; track link) {
-            <div class="mobile-nav-link"
-              (click)="showMobileNav = false;"
-              routerLink="{{link.route}}">
-              <span>{{link.label}}</span>
-              <div class="mobile-nav-link__icon">
-                <mat-icon fontIcon="{{link.icon}}"></mat-icon>
-              </div>
-            </div>
-          }
-          <div class="mobile-nav-link"
-            (click)="showMobileNav = false;">
-            <span>Sign Out</span>
-            <div class="mobile-nav-link__icon"
-              (click)="logout()">
-              <mat-icon fontIcon="logout"></mat-icon>
-            </div>
-          </div>
-        }
-        @if (sharedService.lightMode) {
-          <div class="mobile-nav-link">
-            <div class="mobile-nav-link__icon"
-              (click)="sharedService.lightMode = false"
-              style="background-color: black;">
-              <mat-icon fontIcon="brightness_2"></mat-icon>
-            </div>
-          </div>
-        } @else if (!sharedService.lightMode) {
-          <div class="mobile-nav-link">
-            <div class="mobile-nav-link__icon"
-              (click)="sharedService.lightMode = true"
-              style="background-color: white; color: black;">
-              <mat-icon fontIcon="brightness_7"></mat-icon>
-            </div>
-          </div>
-        }
       </div>
-    </div>
-    <!-- Not the best way to hide the mobile navbar but can refactor later using JavaScript to get rid of all of this duplicate HTML code -->
-  } @else if (!showMobileNav && showMobileNavDirty) {
-    <div style="position: relative;">
-      <div class="mobile-nav-links__hide">
-        @if (authService.currentUserSignal() === null) {
-          @for (link of mobileNavLinksNonUser; track link) {
+      <!-- Not the best way to hide the mobile navbar but can refactor later using JavaScript to get rid of all of this duplicate HTML code -->
+    } @else if (!showMobileNav && showMobileNavDirty) {
+      <div style="position: relative;">
+        <div class="mobile-nav-links__hide">
+          @if (!sharedService.user) {
+            @for (link of mobileNavLinksNonUser; track link) {
+              <div class="mobile-nav-link"
+                (click)="showMobileNav = false;"
+                routerLink="{{link.route}}">
+                <span>{{link.label}}</span>
+                <div class="mobile-nav-link__icon">
+                  <mat-icon fontIcon="{{link.icon}}"></mat-icon>
+                </div>
+              </div>
+            }
+          } @else {
+            @for (link of mobileNavLinksUser; track link) {
+              <div class="mobile-nav-link"
+                (click)="showMobileNav = false;"
+                routerLink="{{link.route}}">
+                <span>{{link.label}}</span>
+                <div class="mobile-nav-link__icon">
+                  <mat-icon fontIcon="{{link.icon}}"></mat-icon>
+                </div>
+              </div>
+            }
             <div class="mobile-nav-link"
-              (click)="showMobileNav = false;"
-              routerLink="{{link.route}}">
-              <span>{{link.label}}</span>
-              <div class="mobile-nav-link__icon">
-                <mat-icon fontIcon="{{link.icon}}"></mat-icon>
+              (click)="showMobileNav = false;">
+              <span>Sign Out</span>
+              <div class="mobile-nav-link__icon"
+                (click)="logout()">
+                <mat-icon fontIcon="logout"></mat-icon>
               </div>
             </div>
           }
-        } @else {
-          @for (link of mobileNavLinksUser; track link) {
-            <div class="mobile-nav-link"
-              (click)="showMobileNav = false;"
-              routerLink="{{link.route}}">
-              <span>{{link.label}}</span>
-              <div class="mobile-nav-link__icon">
-                <mat-icon fontIcon="{{link.icon}}"></mat-icon>
+          @if (sharedService.lightMode) {
+            <div class="mobile-nav-link">
+              <div class="mobile-nav-link__icon"
+                (click)="sharedService.lightMode = false"
+                style="background-color: black;">
+                <mat-icon fontIcon="brightness_2"></mat-icon>
+              </div>
+            </div>
+          } @else if (!sharedService.lightMode) {
+            <div class="mobile-nav-link">
+              <div class="mobile-nav-link__icon"
+                (click)="sharedService.lightMode = true"
+                style="background-color: white; color: black;">
+                <mat-icon fontIcon="brightness_7"></mat-icon>
               </div>
             </div>
           }
-          <div class="mobile-nav-link"
-            (click)="showMobileNav = false;">
-            <span>Sign Out</span>
-            <div class="mobile-nav-link__icon"
-              (click)="logout()">
-              <mat-icon fontIcon="logout"></mat-icon>
-            </div>
-          </div>
-        }
-        @if (sharedService.lightMode) {
-          <div class="mobile-nav-link">
-            <div class="mobile-nav-link__icon"
-              (click)="sharedService.lightMode = false"
-              style="background-color: black;">
-              <mat-icon fontIcon="brightness_2"></mat-icon>
-            </div>
-          </div>
-        } @else if (!sharedService.lightMode) {
-          <div class="mobile-nav-link">
-            <div class="mobile-nav-link__icon"
-              (click)="sharedService.lightMode = true"
-              style="background-color: white; color: black;">
-              <mat-icon fontIcon="brightness_7"></mat-icon>
-            </div>
-          </div>
-        }
+        </div>
       </div>
+    }
+    <!---->
+    <div class="main-content"
+      [class.fade]="showMobileNav"
+      (click)="showMobileNav = false">
+      <router-outlet></router-outlet>
     </div>
-  }
-  <!---->
-  <div class="main-content"
-    [class.fade]="showMobileNav"
-    (click)="showMobileNav = false">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="background">
-    <div class="background-brick-green"></div>
-    <div class="background-brick-gray"></div>
-  </div>
-</section>
+    <div class="background">
+      <div class="background-brick-green"></div>
+      <div class="background-brick-gray"></div>
+    </div>
+  </section>
+}

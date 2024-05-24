@@ -28,11 +28,11 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     this.authService.user$.subscribe((user) => {
       if (user) {
-        this.initial = user.displayName!.charAt(0);
         this.authService.currentUserSignal.set({
           email: user.email!,
           username: user.displayName!
         });
+        this.initial = this.sharedService.user.displayName?.charAt(0);
       } else {
         this.authService.currentUserSignal.set(null);
       }
@@ -41,5 +41,6 @@ export class AppComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
+    window.location.reload();
   }
 }
