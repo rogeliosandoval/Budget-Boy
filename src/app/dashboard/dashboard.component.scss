@@ -14,6 +14,12 @@
   justify-content: center;
   align-items: flex-start;
   width: 100vw;
+
+  @include media('<desktop') {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+  }
 }
 
 .expense-container-no-data {
@@ -23,9 +29,16 @@
 
 .expense-cards {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-left: 10px;
   width: 60%;
+
+  @include media('<desktop') {
+    justify-content: center;
+    margin-left: 0;
+    width: 100vw;
+  }
 }
 
 .expense-card {
@@ -34,7 +47,7 @@
   justify-content: center;
   flex-direction: column;
   max-height: 100px;
-  width: 250px;
+  width: 245px;
   background-color: whitesmoke;
   box-shadow: -5px 5px gray;
   border-radius: 20px;
@@ -54,6 +67,14 @@
       cursor: pointer;
     }
   }
+
+  @include media('<=desktop') {
+    width: 200px;
+  }
+
+  @include media('<=400px') {
+    width: 80vw;
+  }
 }
 
 .expense-card-dark {
@@ -65,6 +86,10 @@
   font-size: 40px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+
+  @include media('<=desktop') {
+    font-size: 30px;
+  }
 }
 
 .amount-expense {
@@ -86,6 +111,16 @@
   font-size: small;
 }
 
+.expense-clipboard-container {
+  position: sticky;
+  top: 30px;
+
+  @include media('<desktop') {
+    position: relative;
+    top: 0;
+    // padding-top: 20px;
+  }
+}
 
 .expense-clipboard {
   position: relative;
@@ -95,6 +130,10 @@
   box-shadow: 10px 10px 10px gray;
   margin-right: 20px;
   animation: fadeIn 0.5s linear;
+
+  @include media('<desktop') {
+    width: 80vw;
+  }
 }
 
 .clipboard-loader {
@@ -112,12 +151,17 @@
 .clipboard-title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 30px;
   background-color: rgb(216, 216, 216);
   font-size: 22px;
   font-weight: bold;
   text-transform: uppercase;
   padding: 5px;
+
+  @include media('<desktop') {
+    font-size: 17px;
+  }
 }
 
 .clipboard-title-dark {
@@ -127,7 +171,7 @@
 .clipboard-list {
   padding: 20px;
   height: 73.5%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .clipboard-list-item {
@@ -140,6 +184,10 @@
 
 .list-item-title {
   text-transform: capitalize;
+
+  @include media('<=desktop') {
+    font-size: 16px;
+  }
 }
 
 .clipboard-summary {
@@ -150,6 +198,10 @@
   display: flex;
   justify-content: space-around;
   border-top: 2px solid black;
+
+  @include media('<=desktop') {
+    font-size: 16px;
+  }
 }
 
 .total-item {
@@ -226,66 +278,4 @@
   &:active {
     filter: brightness(100%);
   }
-}
-
-@include media('<desktop') {
-  .expense-cards {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 10px;
-  width: 60%;
-  }
-
-  .expense-card {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    max-height: 100px;
-    width: 250px;
-    background-color: whitesmoke;
-    box-shadow: -5px 5px gray;
-    border-radius: 20px;
-    padding: 15px 10px;
-    margin: 0 10px 10px 10px;
-    gap: 10px;
-    animation: fadeIn 0.2s linear, slideInLeft 0.2s linear;
-
-    mat-icon {
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding-top: 10px;
-      padding-right: 10px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .expense-container {
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .expense-clipboard {
-    width: 400px;
-  }
-
-  .clipboard-title {
-    display: flex;
-    justify-content: space-between;
-    height: 30px;
-    background-color: rgb(216, 216, 216);
-    font-size: 22px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 5px;
-  }
-}
-
-@include media('<=600px') {
-
 }

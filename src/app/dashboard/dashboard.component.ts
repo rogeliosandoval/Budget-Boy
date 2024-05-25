@@ -31,11 +31,9 @@ export class DashboardComponent implements OnInit {
   }
 
   public addExpense(): void {
-    this.sharedService.modalOpened = true;
     setTimeout(() => {
       this.matDialog.open(ExpenseFormComponent).afterClosed().subscribe({
         next: response => {
-          this.sharedService.modalOpened = false;
           if (response) {
             let amount = response.amount.replace(/,/g, '');
             if (response.type === 'expense') {
@@ -52,13 +50,11 @@ export class DashboardComponent implements OnInit {
   }
 
   public editExpense(expense: Expense): void {
-    this.sharedService.modalOpened = true;
     setTimeout(() => {
       this.matDialog.open(ExpenseFormComponent, {
         data: expense
       }).afterClosed().subscribe({
         next: response => {
-          this.sharedService.modalOpened = false;
           if (response) {
             let difference = 0;
             if (response.oldType === 'expense') {
@@ -129,7 +125,6 @@ export class DashboardComponent implements OnInit {
   }
 
   public deleteExpense(key: any, type: string, amount: any): void {
-    this.sharedService.modalOpened = true;
     setTimeout(() => {
       this.matDialog.open(ConfirmComponent, {
         data: {
@@ -138,7 +133,6 @@ export class DashboardComponent implements OnInit {
         }
       }).afterClosed().subscribe({
         next: response => {
-          this.sharedService.modalOpened = false;
           if (response) {
             let parseAmount = amount.replace(/,/g, '');
             if (type === 'expense') {

@@ -37,85 +37,87 @@
         }
       }
     </div>
-    <div class="expense-clipboard"
-      [class.expense-clipboard-dark]="!sharedService.lightMode">
-      <div class="clipboard-title"
-        [class.clipboard-title-dark]="!sharedService.lightMode">
-        Budget Report/Monthly
-        <div class="clipboard-add" mat-flat-button color="primary"
-          (click)="addExpense()">
-          <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
-        </div>
-      </div>
-      @if (loading) {
-        <div class="clipboard-loader">
-          <mat-spinner></mat-spinner>
-        </div>
-      } @else {
-        @if (expenses.length <= 0) {
-          <div class="add-container">
-            Your report is currently empty.
-            <br/>
-            Start adding!
-            <div class="add" mat-flat-button color="primary"
-              (click)="addExpense()">
-              <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
-            </div>
+    <div class="expense-clipboard-container">
+      <div class="expense-clipboard"
+        [class.expense-clipboard-dark]="!sharedService.lightMode">
+        <div class="clipboard-title"
+          [class.clipboard-title-dark]="!sharedService.lightMode">
+          Budget Report/Monthly
+          <div class="clipboard-add" mat-flat-button color="primary"
+            (click)="addExpense()">
+            <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
           </div>
-        }
-        <div class="clipboard-list">
-          @for (expense of expenses; track expense) {
-            <div class="clipboard-list-item">
-              <div class="list-item-title">
-                {{ expense.title }}
-              </div>
-              <div class="list-item-amount"
-                [class.amount-expense]="expense.type === 'expense'"
-                [class.amount-income]="expense.type === 'income'">
-                ${{ expense.amount }}
+        </div>
+        @if (loading) {
+          <div class="clipboard-loader">
+            <mat-spinner></mat-spinner>
+          </div>
+        } @else {
+          @if (expenses.length <= 0) {
+            <div class="add-container">
+              Your report is currently empty.
+              <br/>
+              Start adding!
+              <div class="add" mat-flat-button color="primary"
+                (click)="addExpense()">
+                <mat-icon style="margin-right: 0;" fontIcon="add"></mat-icon>
               </div>
             </div>
           }
-        </div>
-        <div class="clipboard-summary">
-          <div class="total-item">
-            <span>obligation</span>
-            @if (totalLoading) {
-              <span class="total-item-loader">
-                <mat-spinner [diameter]="18"></mat-spinner>
-              </span>
-            } @else {
-              <span>${{ totalExpenses | twoDecimal }}</span>
+          <div class="clipboard-list">
+            @for (expense of expenses; track expense) {
+              <div class="clipboard-list-item">
+                <div class="list-item-title">
+                  {{ expense.title }}
+                </div>
+                <div class="list-item-amount"
+                  [class.amount-expense]="expense.type === 'expense'"
+                  [class.amount-income]="expense.type === 'income'">
+                  ${{ expense.amount }}
+                </div>
+              </div>
             }
           </div>
-          <div class="total-item">
-            <span>income</span>
-            @if (totalLoading) {
-              <span class="total-item-loader">
-                <mat-spinner [diameter]="18"></mat-spinner>
-              </span>
-            } @else {
-              <span>${{ totalIncome | twoDecimal }}</span>
-            }
-          </div>
-          <div class="total-item">
-            <span>profit</span>
-            @if (totalLoading) {
-              <span class="total-item-loader">
-                <mat-spinner [diameter]="18"></mat-spinner>
-              </span>
-            } @else {
-              @if (this.totalProfit < 0) {
-                <span style="color:rgb(236, 90, 90)">${{ totalProfit | twoDecimal }}</span>
-              } @else if (this.totalProfit > 0) {
-                <span style="color: #01BF62">${{ totalProfit | twoDecimal }}</span>
+          <div class="clipboard-summary">
+            <div class="total-item">
+              <span>obligation</span>
+              @if (totalLoading) {
+                <span class="total-item-loader">
+                  <mat-spinner [diameter]="18"></mat-spinner>
+                </span>
               } @else {
-                <span>${{ totalProfit | twoDecimal }}</span>
+                <span>${{ totalExpenses | twoDecimal }}</span>
               }
-            }
+            </div>
+            <div class="total-item">
+              <span>income</span>
+              @if (totalLoading) {
+                <span class="total-item-loader">
+                  <mat-spinner [diameter]="18"></mat-spinner>
+                </span>
+              } @else {
+                <span>${{ totalIncome | twoDecimal }}</span>
+              }
+            </div>
+            <div class="total-item">
+              <span>profit</span>
+              @if (totalLoading) {
+                <span class="total-item-loader">
+                  <mat-spinner [diameter]="18"></mat-spinner>
+                </span>
+              } @else {
+                @if (this.totalProfit < 0) {
+                  <span style="color:rgb(236, 90, 90)">${{ totalProfit | twoDecimal }}</span>
+                } @else if (this.totalProfit > 0) {
+                  <span style="color: #01BF62">${{ totalProfit | twoDecimal }}</span>
+                } @else {
+                  <span>${{ totalProfit | twoDecimal }}</span>
+                }
+              }
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
   </div>
 </div>
