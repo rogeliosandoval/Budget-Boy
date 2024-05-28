@@ -1,5 +1,5 @@
 import { Component, Inject, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { ExpenseService } from "src/app/services/expense.service";
 
 @Component({
@@ -10,6 +10,7 @@ import { ExpenseService } from "src/app/services/expense.service";
 
 export class ConfirmComponent {
   public matDialog = inject(MatDialog);
+  private dialogRef = inject(MatDialogRef<ConfirmComponent>);
   public expenseService = inject(ExpenseService);
   public type: string = '';
 
@@ -21,6 +22,6 @@ export class ConfirmComponent {
 
   public deleteExpense(): void {
     this.expenseService.deleteExpense(this.data.key);
-    this.matDialog.closeAll();
+    this.dialogRef.close(true);
   }
 }
