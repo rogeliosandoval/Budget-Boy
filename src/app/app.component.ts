@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Renderer2 } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { SharedService } from './services/shared.service';
 
@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   public initial: string = '';
   public authService = inject(AuthService);
   public sharedService = inject(SharedService);
+  public renderer = inject(Renderer2);
   public showMobileNav: boolean = false;
   public showMobileNavDirty: boolean = false;
   public mobileNavLinksNonUser = [
@@ -37,6 +38,14 @@ export class AppComponent implements OnInit {
         this.authService.currentUserSignal.set(null);
       }
     });
+  }
+
+  public changeToDarkBackground(): void {
+    if (this.sharedService.lightMode === false) {
+      this.renderer.setStyle(document.body, 'background-color', 'black')
+    } else {
+      this.renderer.removeStyle(document.body, 'background-color')
+    }
   }
 
   public logout(): void {

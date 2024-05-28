@@ -11,7 +11,6 @@
 }
 
 .main-container-dark {
-  background-color: black;
   color: white;
 }
 
@@ -156,8 +155,12 @@
     position: relative;
   }
 
+  .main-content {
+    margin-top: 70px;
+  }
+
   .header {
-    position: sticky;
+    position: fixed;
     top: 0;
     justify-content: space-between;
     height: 70px;
@@ -195,6 +198,7 @@
     right: 0;
     padding: 0.5rem;
     margin-left: auto;
+    margin-top: 70px;
     z-index: 1;
     animation: slideInRight 0.2s linear;
   }
@@ -205,6 +209,7 @@
     right: -300px;
     padding: 0.5rem;
     margin-left: auto;
+    margin-top: 70px;
     animation: slideOutRight 0.2s linear;
   }
 
@@ -250,7 +255,6 @@
 
 @include media('<=600px') {
   .main-content {
-    padding: 0;
     justify-content: normal;
     align-items: normal;
   }

@@ -1,7 +1,6 @@
 @if (authService.currentUserSignal() || authService.currentUserSignal() === null) {
   <section class="main-container"
-    [class.main-container-dark]="!sharedService.lightMode"
-    [class.no-scroll]="sharedService.modalOpened">
+    [class.main-container-dark]="!sharedService.lightMode">
     <div class="header"
       [class.header-dark]="!sharedService.lightMode">
       <img routerLink="/home" src="assets/logo.svg" alt="logo">
@@ -19,11 +18,11 @@
         [class.nav-links-dark]="!sharedService.lightMode"
         [class.form-fade]="sharedService.navFade">
         @if (sharedService.lightMode) {
-          <span (click)="sharedService.lightMode = false" style="background-color: black; color: white;">
+          <span (click)="sharedService.lightMode = false; changeToDarkBackground()" style="background-color: black; color: white;">
             <mat-icon fontIcon="brightness_2"></mat-icon>
           </span>
         } @else {
-          <span (click)="sharedService.lightMode = true" style="background-color: white !important; color: black;">
+          <span (click)="sharedService.lightMode = true; changeToDarkBackground()" style="background-color: white !important; color: black;">
             <mat-icon fontIcon="brightness_7"></mat-icon>
           </span>
         }
@@ -97,7 +96,7 @@
           @if (sharedService.lightMode) {
             <div class="mobile-nav-link">
               <div class="mobile-nav-link__icon"
-                (click)="sharedService.lightMode = false"
+                (click)="sharedService.lightMode = false; changeToDarkBackground()"
                 style="background-color: black;">
                 <mat-icon fontIcon="brightness_2"></mat-icon>
               </div>
@@ -105,7 +104,7 @@
           } @else if (!sharedService.lightMode) {
             <div class="mobile-nav-link">
               <div class="mobile-nav-link__icon"
-                (click)="sharedService.lightMode = true"
+                (click)="sharedService.lightMode = true; changeToDarkBackground()"
                 style="background-color: white; color: black;">
                 <mat-icon fontIcon="brightness_7"></mat-icon>
               </div>
