@@ -9,7 +9,6 @@ export class SharedService {
   private authService = inject(AuthService);
   public navFade: boolean = false;
   public lightMode: boolean = true;
-  public modalOpened: boolean = false;
   public user: any;
 
   constructor() {
