@@ -16,6 +16,11 @@
   text-transform: uppercase;
   font-weight: bold;
   color: $theme-green;
+
+  @include media('<=600px') {
+    top: -34px;
+    font-size: 40px;
+  }
 }
 
 .loader {
@@ -91,6 +96,11 @@ form {
     &:focus {
       outline: transparent;
     }
+
+    @include media('<=600px') {
+      width: 300px;
+      font-size: 15px;
+    }
   }
 }
 
@@ -115,6 +125,10 @@ form {
       cursor: pointer;
     }
   }
+
+  @include media('<=600px') {
+    left: 55px;
+  }
 }
 
 img {
@@ -122,28 +136,4 @@ img {
   left: 0;
   bottom: 0;
   opacity: 0.3;
-}
-
-@include media('<=600px') {
-  .register-title {
-    position: absolute;
-    top: -34px;
-    left: 20px;
-    letter-spacing: -3px;
-    font-size: 40px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: $theme-green;
-  }
-
-  form {
-    input {
-      width: 300px;
-      font-size: 15px;
-    }
-  }
-
-  .login {
-    left: 55px;
-  }
 }
