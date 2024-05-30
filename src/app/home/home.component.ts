@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { AuthService } from "../services/auth.service";
-import { SharedService } from "../services/shared.service";
+import { Component, OnInit, inject } from "@angular/core"
+import { AuthService } from "../services/auth.service"
+import { SharedService } from "../services/shared.service"
 
 @Component({
   selector: 'home',
@@ -9,11 +9,11 @@ import { SharedService } from "../services/shared.service";
 })
 
 export class HomeComponent implements OnInit {
-  public authService = inject(AuthService);
-  public sharedService = inject(SharedService);
-  public user: any;
+  public authService = inject(AuthService)
+  public sharedService = inject(SharedService)
+  public user: any
 
   ngOnInit(): void {
-    this.sharedService.navFade = false;
+    this.sharedService.navFade = false
   }
 }

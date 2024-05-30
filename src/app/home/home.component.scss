@@ -6,6 +6,10 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+
+  @include media('>=desktop') {
+    height: calc(100vh - 150px);
+  }
 }
 
 .home {
@@ -17,6 +21,18 @@
   img {
     max-width: 400px;
     animation: fadeIn 0.3s linear;
+
+    @include media('<desktop') {
+      max-width: 300px;
+    }
+  }
+
+  @include media('<desktop') {
+    flex-wrap: wrap;
+  }
+
+  @include media('<=600px') {
+    padding: 20px;
   }
 }
 
@@ -51,6 +67,14 @@
     font-size: 70px;
     text-transform: uppercase;
     color: $theme-green;
+
+    @include media('<desktop') {
+      font-size: 60px;
+    }
+
+    @include media('<=600px') {
+      font-size: 40px;
+    }
   }
 }
 
@@ -61,6 +85,11 @@
 
   span {
     color: $theme-green;
+  }
+
+  @include media('<desktop') {
+    max-width: 800px;
+    font-size: 18px;
   }
 }
 
@@ -78,44 +107,5 @@
 
   span {
     color: $theme-green;
-  }
-}
-
-@include media('>=desktop') {
-  .home-container {
-    height: calc(100vh - 150px);
-  }
-}
-
-@include media('<desktop') {
-  .home {
-    flex-wrap: wrap;
-
-    img {
-      max-width: 300px;
-    }
-  }
-
-  .title {
-    h1 {
-      font-size: 60px;
-    }
-  }
-
-  .sub-title {
-    max-width: 800px;
-    font-size: 18px;
-  }
-}
-
-@include media('<=600px') {
-  .home {
-    padding: 20px;
-  }
-
-  .title {
-    h1 {
-      font-size: 40px;
-    }
   }
 }
