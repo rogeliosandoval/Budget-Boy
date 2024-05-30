@@ -1,6 +1,6 @@
-import { Component, OnInit, inject, Renderer2 } from '@angular/core';
-import { AuthService } from './services/auth.service';
-import { SharedService } from './services/shared.service';
+import { Component, OnInit, inject, Renderer2 } from '@angular/core'
+import { AuthService } from './services/auth.service'
+import { SharedService } from './services/shared.service'
 
 @Component({
   selector: 'app-root',
@@ -8,23 +8,23 @@ import { SharedService } from './services/shared.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public initial: string = '';
-  public authService = inject(AuthService);
-  public sharedService = inject(SharedService);
-  public renderer = inject(Renderer2);
-  public showMobileNav: boolean = false;
-  public showMobileNavDirty: boolean = false;
+  public initial: string = ''
+  public authService = inject(AuthService)
+  public sharedService = inject(SharedService)
+  public renderer = inject(Renderer2)
+  public showMobileNav: boolean = false
+  public showMobileNavDirty: boolean = false
   public mobileNavLinksNonUser = [
     { route: '/home', icon: 'home', label: 'Home' },
     { route: '/about', icon: 'info_outline', label: 'About' },
     { route: '/register', icon: 'person_add', label: 'Sign Up' },
     { route: '/login', icon: 'login', label: 'Login' }
-  ];
+  ]
   public mobileNavLinksUser = [
     { route: '/home', icon: 'home', label: 'Home' },
     { route: '/dashboard', icon: 'view_comfy', label: 'Dashboard' },
     { route: '/checklist', icon: 'check_box', label: 'Checklist' }
-  ];
+  ]
 
   ngOnInit(){
     this.authService.user$.subscribe((user) => {
@@ -32,12 +32,12 @@ export class AppComponent implements OnInit {
         this.authService.currentUserSignal.set({
           email: user.email!,
           username: user.displayName!
-        });
-        this.initial = this.sharedService.user.displayName?.charAt(0);
+        })
+        this.initial = this.sharedService.user.displayName?.charAt(0)
       } else {
-        this.authService.currentUserSignal.set(null);
+        this.authService.currentUserSignal.set(null)
       }
-    });
+    })
   }
 
   public changeToDarkBackground(): void {
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   }
 
   public logout(): void {
-    this.authService.logout();
-    window.location.reload();
+    this.authService.logout()
+    window.location.reload()
   }
 }
