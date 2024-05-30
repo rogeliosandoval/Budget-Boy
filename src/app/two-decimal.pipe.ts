@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'twoDecimal'
@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TwoDecimalPipe implements PipeTransform {
   transform(value: number): string {
     if (isNaN(value)) {
-      return '0.00'; // Handle NaN values gracefully
+      return '0.00' // Handle NaN values gracefully
     }
-    return value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 }
