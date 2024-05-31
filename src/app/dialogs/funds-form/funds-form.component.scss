@@ -1,0 +1,104 @@
+@import 'src/variables.scss';
+@import 'include-media';
+
+.funds-form-container {
+  width: 350px;
+}
+
+form {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px;
+  max-width: 400px;
+  height: 100%;
+  background-color: $theme-gray;
+  padding: 15px;
+  margin: 0;
+  z-index: 2;
+  transition: 0.1s linear;
+
+  button {
+    padding: 5px;
+    margin-top: 10px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.1s linear;
+    border: none;
+    background-color: whitesmoke;
+    width: 100px;
+    text-transform: uppercase;
+    color: $theme-gray;
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(110%);
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  label {
+    color: white;
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  
+  input {
+    display: block;
+    padding: 10px 6px;
+    width: 240px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 3px;
+    color: $theme-gray;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+  
+    &:focus {
+      outline: transparent;
+    }
+
+    @include media('<desktop') {
+      font-size: 16px;
+      width: 250px;
+    }
+  }
+}
+
+.title {
+  position: relative;
+  background-color: $theme-gray;
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+
+  mat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 4px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
