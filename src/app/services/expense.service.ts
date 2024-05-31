@@ -1,42 +1,42 @@
-import { Injectable, inject } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFireList } from '@angular/fire/compat/database';
+import { Injectable, inject } from '@angular/core'
+import { AngularFireDatabase } from '@angular/fire/compat/database'
+import { AngularFireList } from '@angular/fire/compat/database'
 import { SharedService } from './shared.service'
-import { Expense } from '../user.interface';
+import { Expense } from '../user.interface'
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class ExpenseService {
-  private databasePath = '/expenses/';
-  private database = inject(AngularFireDatabase);
-  private sharedService = inject(SharedService);
+  private databasePath = '/expenses/'
+  private database = inject(AngularFireDatabase)
+  private sharedService = inject(SharedService)
   public expenseRef: AngularFireList<any>
-  private userName = this.sharedService.user.displayName;
+  private userName = this.sharedService.user.displayName
 
   constructor(){
-    this.expenseRef = this.database.list(this.databasePath + this.userName);
+    this.expenseRef = this.database.list(this.databasePath + this.userName)
   }
 
   getAllExpenses() {
-    return this.expenseRef;
+    return this.expenseRef
   }
 
   addExpense(expense: Expense): void {
-    this.expenseRef.push(expense);
+    this.expenseRef.push(expense)
   }
   
 
   getExpense(key: string) {
-    return this.database.object(`${this.databasePath}/${key}`);
+    return this.database.object(`${this.databasePath}/${key}`)
   }
 
   updateExpense(key: string, expense: Expense): void {
-    this.expenseRef.update(key, expense);
+    this.expenseRef.update(key, expense)
   }
 
   deleteExpense(key: string) {
-    return this.expenseRef.remove(key);
+    return this.expenseRef.remove(key)
   }
 }
