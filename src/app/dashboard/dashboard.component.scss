@@ -72,7 +72,7 @@
     width: 200px;
   }
 
-  @include media('<=400px') {
+  @include media('<=450px') {
     width: 80vw;
   }
 }
@@ -132,6 +132,7 @@
   animation: fadeIn 0.5s linear;
 
   @include media('<desktop') {
+    height: 500px;
     width: 80vw;
   }
 }
@@ -172,6 +173,10 @@
   padding: 20px;
   height: 73.5%;
   overflow-y: scroll;
+
+  @include media('<desktop') {
+    height: 66%;
+  }
 }
 
 .clipboard-list-item {
@@ -263,7 +268,7 @@
   align-items: center;
   height: 30px;
   width: 30px;
-  // border-radius: 100%;
+  border-radius: 5px;
   background-color: $theme-green;
 
   mat-icon {

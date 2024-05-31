@@ -72,6 +72,11 @@ form {
     &:focus {
       outline: transparent;
     }
+
+    @include media('<desktop') {
+      font-size: 16px;
+      width: 250px;
+    }
   }
 }
 
@@ -146,5 +151,9 @@ form {
     &:hover {
       cursor: pointer;
     }
+  }
+
+  @include media('<desktop') {
+    font-size: 14px;
   }
 }
