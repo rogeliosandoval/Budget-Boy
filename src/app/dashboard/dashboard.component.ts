@@ -154,7 +154,8 @@ export class DashboardComponent implements OnInit {
             type: expense.type,
             amount: expense.amount,
             title: expense.title,
-            note: expense.note
+            note: expense.note,
+            checked: expense.checked
           })
         })
 

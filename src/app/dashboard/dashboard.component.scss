@@ -55,6 +55,7 @@
   margin: 0 10px 10px 10px;
   gap: 10px;
   animation: fadeIn 0.2s linear, slideInLeft 0.2s linear;
+  transition: 0.1s linear;
 
   mat-icon {
     position: absolute;
