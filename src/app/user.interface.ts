@@ -8,5 +8,6 @@ export interface Expense {
   type: string
   amount: string
   title: string
-  note: string
+  note: string,
+  checked: boolean
 }
