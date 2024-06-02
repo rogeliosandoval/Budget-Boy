@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, inject } from "@angular/core"
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog"
+import { ExpenseService } from "src/app/services/expense.service"
 
 @Component({
   selector: 'funds-form',
@@ -11,6 +12,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dial
 export class FundsFormComponent implements OnInit {
   private formBuilder = inject(FormBuilder)
   private dialogRef = inject(MatDialogRef<FundsFormComponent>)
+  private expenseService = inject(ExpenseService)
   public matDialog = inject(MatDialog)
   public fundsForm: FormGroup
 
@@ -25,6 +27,7 @@ export class FundsFormComponent implements OnInit {
   ngOnInit(){}
 
   public onSubmit(): void {
+    this.expenseService.addAvailableFunds(this.fundsForm.get('amount')?.value)
     this.dialogRef.close(this.fundsForm.get('amount')?.value)
   }
 }

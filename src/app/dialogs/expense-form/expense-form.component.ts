@@ -26,7 +26,8 @@ export class ExpenseFormComponent implements OnInit {
       type: [this.type, Validators.required],
       amount: ['', Validators.required],
       title: ['', Validators.required],
-      note: ['']
+      note: [''],
+      checked: false
     })
     this.expenseForm.get('type')?.disable()
   }
