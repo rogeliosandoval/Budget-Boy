@@ -4,7 +4,7 @@
     <mat-icon fontIcon="close" (click)="matDialog.closeAll()"></mat-icon>
   </div>
   <form [formGroup]="fundsForm">
-    <input type="text" placeholder="$" formControlName="amount" numbersOnly maxLength="7">
+    <input type="text" placeholder="$" formControlName="amount" numbersOnly maxLength="8">
     <button (click)="onSubmit()" [class.button-disabled]="fundsForm.invalid">Submit</button>
   </form>
 </div>
