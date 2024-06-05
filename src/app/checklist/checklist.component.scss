@@ -1,0 +1,47 @@
+@import 'src/variables.scss';
+@import 'include-media';
+@import '../dashboard/dashboard.component.scss';
+
+.checklist {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.current-funds-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.current-funds {
+  font-size: 100px;
+  color: $theme-green;
+}
+
+.expense-card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.expense-card {
+  animation: none;
+  user-select: none;
+}
+
+.paid-fade {
+  opacity: 0.4;
+}
+
+.paid-note {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  font-size: xx-large;
+  font-weight: bold;
+  color: $theme-green;
+  text-shadow: #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
+}

@@ -1,0 +1,42 @@
+<div class="checklist">
+  <div class="current-funds-container">
+    @if (!fundsLoading) {
+      <div class="current-funds"
+        [style.color]="fundsAvailable < 0 ? 'rgb(236, 90, 90)' : '#01BF62'">
+        ${{ fundsAvailable | twoDecimal }}
+      </div>
+    } @else {
+      <mat-spinner></mat-spinner>
+    }
+    <button mat-flat-button 
+      color="accent" 
+      style="color: white; width: 200px;"
+      (click)="addFunds()">
+      {{ fundsAvailable == 0 ? 'Add Funds' : 'Update Funds' }}
+    </button>
+  </div>
+  <div class="expense-cards">
+    @for (expense of expenses; track expense) {
+      <div class="expense-card"
+        [class.expense-card-dark]="!sharedService.lightMode"
+        (click)="checkExpense(expense.amount, expense.key, expense.checked)">
+        <div class="amount"
+          [class.paid-fade]="expense.checked === true" 
+          [class.amount-expense]="expense.type === 'expense'">
+          ${{ expense.amount }}
+        </div>
+        <div class="info"
+          [class.paid-fade]="expense.checked === true">
+          <div class="title">
+            {{ expense.title}}
+          </div>
+        </div>
+        @if (expense.checked === true) {
+          <div class="paid-note">
+            Paid
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
