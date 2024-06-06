@@ -124,11 +124,13 @@ export class DashboardComponent implements OnInit {
     this.matDialog.open(ConfirmComponent, {
       data: {
         key,
-        type
+        type,
+        reason: 'delete'
       }
     }).afterClosed().subscribe({
       next: response => {
         if (response) {
+          this.expenseService.deleteExpense(key)
           let parseAmount = amount.replace(/,/g, '')
           if (type === 'expense') {
             this.totalExpenses -= parseAmount

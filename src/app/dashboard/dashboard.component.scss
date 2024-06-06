@@ -175,6 +175,10 @@
   height: 73.5%;
   overflow-y: scroll;
 
+  & .clipboard-list-item:first-child {
+    border: none;
+  }
+
   @include media('<desktop') {
     height: 66%;
   }
@@ -283,5 +287,17 @@
 
   &:active {
     filter: brightness(100%);
+  }
+}
+
+img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0.3;
+  z-index: -1;
+
+  @include media('<desktop') {
+    display: none;
   }
 }
