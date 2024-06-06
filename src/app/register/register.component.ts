@@ -2,7 +2,7 @@ import { Component, inject } from "@angular/core"
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { AuthService } from "../services/auth.service"
 import { SharedService } from "../services/shared.service"
-import { Router } from "@angular/router"
+// import { Router } from "@angular/router"
 import { AngularFireDatabase } from '@angular/fire/compat/database'
 import { AngularFireList } from '@angular/fire/compat/database'
 
@@ -14,11 +14,11 @@ import { AngularFireList } from '@angular/fire/compat/database'
 
 export class RegisterComponent {
   private database = inject(AngularFireDatabase)
-  private databasePath = '/users/'
+  private databaseUsersPath = '/users/'
   private authService = inject(AuthService)
   private sharedService = inject(SharedService)
   private formBuilder = inject(FormBuilder)
-  private router = inject(Router)
+  // private router = inject(Router)
   public usersRef: AngularFireList<any>
   public registerForm: FormGroup
   public loading: boolean = false
@@ -32,7 +32,7 @@ export class RegisterComponent {
       confirmPassword: ['', Validators.required]
     })
 
-    this.usersRef = this.database.list(this.databasePath)
+    this.usersRef = this.database.list(this.databaseUsersPath)
   }
 
   public register(): void {

@@ -136,4 +136,9 @@ img {
   left: 0;
   bottom: 0;
   opacity: 0.3;
+  z-index: -1;
+
+  @include media('<desktop') {
+    display: none;
+  }
 }
