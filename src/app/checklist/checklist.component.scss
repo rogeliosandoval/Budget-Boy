@@ -6,6 +6,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  animation: fadeIn 0.2s linear;
 }
 
 .current-funds-container {
@@ -15,14 +18,27 @@
   flex-direction: column;
 }
 
+.buttons {
+  display: flex;
+  gap: 30px;
+}
+
 .current-funds {
   font-size: 100px;
   color: $theme-green;
+
+  @include media('<desktop') {
+    font-size: 60px;
+  }
 }
 
 .expense-card:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.expense-cards {
+  width: 100%;
 }
 
 .expense-card {
@@ -44,4 +60,17 @@
   font-weight: bold;
   color: $theme-green;
   text-shadow: #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
+}
+
+img {
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+  opacity: 0.3;
+  z-index: -1;
+  width: 30%;
+
+  @include media('<desktop') {
+    display: none;
+  }
 }

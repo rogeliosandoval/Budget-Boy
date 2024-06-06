@@ -8,35 +8,53 @@
     } @else {
       <mat-spinner></mat-spinner>
     }
-    <button mat-flat-button 
-      color="accent" 
-      style="color: white; width: 200px;"
-      (click)="addFunds()">
-      {{ fundsAvailable == 0 ? 'Add Funds' : 'Update Funds' }}
-    </button>
+    <div class="buttons">
+      <button mat-flat-button 
+        color="accent" 
+        style="color: white; width: 200px;"
+        (click)="addFunds()">
+        {{ fundsAvailable == 0 ? 'Add Funds' : 'Update Funds' }}
+      </button>
+      @if (expenses.length > 0) {
+        <button mat-flat-button 
+          color="warn" 
+          style="color: white; width: 200px;"
+          (click)="unmarkExpenses()">
+          Unmark Expenses
+        </button>
+      }
+    </div>
   </div>
   <div class="expense-cards">
-    @for (expense of expenses; track expense) {
-      <div class="expense-card"
-        [class.expense-card-dark]="!sharedService.lightMode"
-        (click)="checkExpense(expense.amount, expense.key, expense.checked)">
-        <div class="amount"
-          [class.paid-fade]="expense.checked === true" 
-          [class.amount-expense]="expense.type === 'expense'">
-          ${{ expense.amount }}
-        </div>
-        <div class="info"
-          [class.paid-fade]="expense.checked === true">
-          <div class="title">
-            {{ expense.title}}
+    @if (!loading) {
+      @for (expense of expenses; track expense) {
+        <div class="expense-card"
+          [class.expense-card-dark]="!sharedService.lightMode"
+          (click)="checkExpense(expense.amount, expense.key, expense.checked)">
+          <div class="amount"
+            [class.paid-fade]="expense.checked === true" 
+            [class.amount-expense]="expense.type === 'expense'">
+            ${{ expense.amount }}
           </div>
-        </div>
-        @if (expense.checked === true) {
-          <div class="paid-note">
-            Paid
+          <div class="info"
+            [class.paid-fade]="expense.checked === true">
+            <div class="title">
+              {{ expense.title}}
+            </div>
           </div>
-        }
-      </div>
+          @if (expense.checked === true) {
+            <div class="paid-note">
+              Paid
+            </div>
+          }
+        </div>
+      }
+    } @else {
+      <mat-spinner></mat-spinner>
+    }
+    @if (expenses.length === 0) {
+      You currently have no expenses.
     }
   </div>
 </div>
+<img src="assets/money-up.webp" alt="girl-on-computer">

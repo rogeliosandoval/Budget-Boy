@@ -4,6 +4,7 @@ import { ExpenseService } from "../services/expense.service"
 import { MatDialog } from "@angular/material/dialog"
 import { FundsFormComponent } from "../dialogs/funds-form/funds-form.component"
 import { SharedService } from "../services/shared.service"
+import { ConfirmComponent } from "../dialogs/confirm/confirm.component"
 
 @Component({
   selector: 'checklist',
@@ -53,15 +54,29 @@ export class ChecklistComponent implements OnInit {
     })
   }
 
-  public test(): void {
-    console.log(this.expenses)
-  }
-
   public addFunds(): void {
     this.matDialog.open(FundsFormComponent).afterClosed().subscribe({
       next: response => {
         if (response) {
 
+        }
+      }
+    })
+  }
+
+  public unmarkExpenses(): void {
+    this.matDialog.open(ConfirmComponent, {
+      data: {
+        reason: 'unmark'
+      }
+    }).afterClosed().subscribe({
+      next: response => {
+        if (response) {
+          this.loading = true
+          setTimeout(() => {
+            this.expenseService.updateAllExpenseChecked(false)
+            window.location.reload()
+          }, 1000)
         }
       }
     })
