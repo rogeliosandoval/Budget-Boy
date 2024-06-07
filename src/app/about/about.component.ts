@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core"
+import { SharedService } from "../services/shared.service"
 
 @Component({
   selector: 'about',
@@ -7,5 +8,5 @@ import { Component } from "@angular/core";
 })
 
 export class AboutComponent {
-
+  public sharedService = inject(SharedService)
 }

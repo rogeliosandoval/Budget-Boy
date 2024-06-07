@@ -1,1 +1,24 @@
-<h1>this is the about me page</h1>
+<div class="about">
+  <div class="bundle">
+    <div class="description">
+      <h3>Your Dashboard</h3>
+      <span>Budget Boy</span> provides you with a simple yet efficient way to track your finances and budget accordingly. Just add all of your incomes and expenses to your clipboard and see exactly what you're saving or losing a month. Hopefully you're saving!
+    </div>
+    @if (sharedService.lightMode === false) {
+      <img src="assets/dashboard_dark.png" alt="dashboard">
+    } @else {
+      <img src="assets/dashboard_light.png" alt="dashboard">
+    }
+  </div>
+  <div class="bundle bundle-reverse">
+    @if (sharedService.lightMode === false) {
+      <img src="assets/checklist_dark.png" alt="dashboard">
+    } @else {
+      <img src="assets/checklist_light.png" alt="dashboard">
+    }
+    <div class="description">
+      <h3>Checklist</h3>
+      <span>Budget Boy</span> also provides a checklist that you can actually use to see exactly what you're going to have per month. Your dashboard gives you a good idea on how your finances are looking a month, but with your checklist you can actually enter the current funds you have available and keep track of what's paid for for that month. Never miss another payment!
+    </div>
+  </div>
+</div>

@@ -1,3 +1,48 @@
-h1 {
-  color: burlywood;
+@import 'src/variables.scss';
+@import 'include-media';
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  animation: fadeIn 0.5s linear;
+
+  @include media('<desktop') {
+    gap: 20px;
+  }
+}
+
+.bundle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.description {
+  width: 500px;
+
+  span {
+    color: $theme-green;
+  }
+
+  @include media('<desktop') {
+    width: 100%;
+  }
+}
+
+img {
+  width: 35%;
+  border: 5px solid $theme-gray;
+
+  @include media('<desktop') {
+    width: 100%;
+  }
+}
+
+@include media('<872px') {
+  .bundle-reverse {
+    flex-direction: column-reverse;
+  }
 }
