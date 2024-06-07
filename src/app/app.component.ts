@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, Renderer2 } from '@angular/core'
 import { AuthService } from './services/auth.service'
 import { SharedService } from './services/shared.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit {
   public authService = inject(AuthService)
   public sharedService = inject(SharedService)
   public renderer = inject(Renderer2)
+  private router = inject(Router)
   public showMobileNav: boolean = false
   public showMobileNavDirty: boolean = false
   public mobileNavLinksNonUser = [
@@ -49,7 +51,11 @@ export class AppComponent implements OnInit {
   }
 
   public logout(): void {
-    this.authService.logout()
-    window.location.reload()
+    this.authService.logout().subscribe({
+      next: response => {
+        this.router.navigate(['/login'])
+      }
+    })
+    // window.location.reload()
   }
 }

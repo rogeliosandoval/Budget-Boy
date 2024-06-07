@@ -17,6 +17,7 @@ import { ChecklistComponent } from './checklist/checklist.component'
 //Dialogs
 import { ExpenseFormComponent } from './dialogs/expense-form/expense-form.component'
 import { ConfirmComponent } from './dialogs/confirm/confirm.component'
+import { FundsFormComponent } from './dialogs/funds-form/funds-form.component'
 
 //Services/Guards
 import { environment } from 'src/environments/environment'
@@ -66,7 +67,8 @@ const routes: Routes = [
     NumbersOnlyPipe,
     ConfirmComponent,
     TwoDecimalPipe,
-    ChecklistComponent
+    ChecklistComponent,
+    FundsFormComponent
   ],
   imports: [
     BrowserModule,
