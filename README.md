@@ -22,4 +22,4 @@ A checklist is also included that allows you to mark off your expenses that you 
 <b>Thank you!</b>
 <br>
 <br>
-<img src="budget-boy.gif" alt="minna" width="100%" height="auto">
+<img src="budget-boy-preview.gif" alt="budget-boy" width="100%" height="auto">
