@@ -36,7 +36,7 @@ form {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 5px;
   max-width: 400px;
   height: 100%;
   background-color: $theme-green;
@@ -78,7 +78,6 @@ form {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
-    margin-top: 15px;
   }
   
   input {
@@ -106,10 +105,10 @@ form {
 
 .register-input {
   span {
+    margin-top: 5px;
     font-size: 14px;
-    color: red;
+    color: rgb(190, 41, 41);
     font-weight: bold;
-    visibility: hidden;
   }
 }
 
@@ -117,6 +116,7 @@ form {
   position: absolute;
   bottom: -60px;
   left: 80px;
+  margin-bottom: 15px;
   
   span {
     color: $theme-green;

@@ -7,29 +7,45 @@
     <div class="register-input">
       <label>Username</label>
       <input type="text" placeholder="username" formControlName="username">
-      <span>Invalid Email</span>
+      @if (registerForm.get('username')?.invalid && registerForm.get('username')?.dirty || showErrors && registerForm.get('username')?.invalid) {
+        <span>Please enter a username</span>
+      } @else {
+        <br>
+      }
     </div>
     <div class="register-input">
       <label>Email</label>
       <input type="email" placeholder="email" formControlName="email">
-      <span>Invalid Email</span>
+      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.dirty || showErrors && registerForm.get('email')?.invalid) {
+        <span>Invalid Email</span>
+      } @else {
+        <br>
+      }
     </div>
     <div class="register-input">
       <label>Password</label>
       <input type="password" placeholder="password" formControlName="password">
-      <span>Invalid Password</span>
+      @if (registerForm.get('password')?.invalid && registerForm.get('password')?.dirty || showErrors && registerForm.get('password')?.invalid) {
+        <span>Make password at least 5 characters</span>
+      } @else {
+        <br>
+      }
     </div>
     <div class="register-input">
       <label>Confirm Password</label>
       <input type="password" placeholder="confirm password" formControlName="confirmPassword">
-      <span>Invalid Password</span>
+      @if (registerForm.get('confirmPassword')?.errors?.['passwordMismatch'] || showErrors && registerForm.get('confirmPassword')?.invalid) {
+        <span>Passwords do not match</span>
+      } @else {
+        <br>
+      }
     </div>
 
     <span class="form-error">
-      {{errorMessage}}
+      {{ errorMessage }}
     </span>
 
-    <button [class.button-disabled]="registerForm.invalid" (click)="register()">Register</button>
+    <button (click)="register()">Register</button>
   </form>
   @if (loading) {
     <div class="loader">

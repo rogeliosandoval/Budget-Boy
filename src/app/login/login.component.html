@@ -19,7 +19,7 @@
       {{errorMessage}}
     </span>
 
-    <button [class.button-disabled]="loginForm.invalid" (click)="login()">Log In</button>
+    <button (click)="login()">Log In</button>
   </form>
   @if (loading) {
     <div class="loader">
