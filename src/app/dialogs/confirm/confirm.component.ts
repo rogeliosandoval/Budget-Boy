@@ -16,12 +16,9 @@ export class ConfirmComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any
-  ){
-    this.type = data.type
-  }
+  ){}
 
-  public deleteExpense(): void {
-    this.expenseService.deleteExpense(this.data.key)
+  public callback(): void {
     this.dialogRef.close(true)
   }
 }
