@@ -3,6 +3,10 @@
 
 .funds-form-container {
   width: 350px;
+
+  @include media('<desktop') {
+    width: 275px;
+  }
 }
 
 form {
@@ -70,7 +74,7 @@ form {
 
     @include media('<desktop') {
       font-size: 16px;
-      width: 250px;
+      width: 170px;
     }
   }
 }
@@ -84,6 +88,10 @@ form {
   text-align: center;
   padding: 10px;
   font-weight: bold;
+
+  @include media('<desktop') {
+    font-size: 12px;
+  }
 
   mat-icon {
     display: flex;
