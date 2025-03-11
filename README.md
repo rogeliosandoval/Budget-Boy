@@ -19,7 +19,10 @@ Budget Boy is an online tool that helps you keep track of all of your finances t
 A checklist is also included that allows you to mark off your expenses that you already paid for the month. This can help make sure you never miss another a payment again. It's also pretty cool to see how much you have to spend. B)
 <br>
 <br>
-<b>Thank you!</b>
+<b>This isn't a production ready product so please feel free to mess around with it as much as you'd like.</b>
+<br>
+<br>
+Thank you!
 <br>
 <br>
 <img src="budget-boy-preview.gif" alt="budget-boy" width="100%" height="auto">
